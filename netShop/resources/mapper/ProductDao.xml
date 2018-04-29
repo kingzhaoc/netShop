@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="team.hymxj.dao.ProductDao" >
+  <resultMap id="BaseResultMap" type="team.hymxj.entity.Product" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="subTitle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="main_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sub_images" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="detail" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="price" jdbcType="DECIMAL" javaType="java.lang.Double" />
+      <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, category_id, name, subTitle, main_image, sub_images, detail, price, stock, status, create_time, update_time
+  </sql>
+  <sql id="noId_Column_List" >
+    category_id, name, subTitle, main_image, sub_images, detail, price, stock, status,create_time,update_time
+  </sql>
+  
+  <select id="getLimitProductByCategoryId" resultMap="BaseResultMap">
+  	select
+    <include refid="Base_Column_List"/>
+  	from netshop_product where category_id = #{_categoryId} and status=1
+  	order by rand() limit 7
+  </select>
+  
+  <select id="getPromtByWords" resultType="java.lang.String">
+      select name from netshop_product where name like CONCAT('%',#{_parameter},'%')
+      order by rand() limit 10
+  </select>
+  
+  <select id="getHotProduct" resultMap="BaseResultMap">
+      select 
+      <include refid="Base_Column_List" />
+      from netshop_product where status=1
+      order by rand() limit 4
+  </select>
+  
+  <select id="getProductById" resultMap="BaseResultMap">
+  	select
+    <include refid="Base_Column_List"/>
+  	from netshop_product where  id = #{_parameter}
+  </select>
+  
+  <select id="getProductByWordsHelper" resultMap="BaseResultMap">
+      select 
+      <include refid="Base_Column_List"/>
+      from netshop_product where status=1 and name like CONCAT('%',#{words},'%')
+      limit #{start},#{length}
+  </select>
+  
+   <select id="getProductByCategoryHelper" resultMap="BaseResultMap">
+      select 
+      <include refid="Base_Column_List"/>
+      from netshop_product where status=1 and category_id=#{categoryId}
+      limit #{start},#{length}
+  </select>
+  
+  <select id="getCountByWords" resultType="java.lang.Integer">
+      select count(*)
+      from netshop_product where status=1 and name like CONCAT('%',#{_parameter},'%')
+  </select>
+  
+   <select id="getCountByCategoryId" resultType="java.lang.Integer">
+      select count(*)
+      from netshop_product where category_id=#{_parameter}
+  </select>
+  
+  <delete id="deleteProductById">
+  	delete from netShop_product  
+  	where id=#{_parameter}
+  </delete>
+  
+  <update id="updateProduct" parameterType="team.hymxj.entity.Product">
+  	update netShop_product set
+  	name=#{name},
+  	subTitle=#{subTitle},
+  	main_image=#{mainImage},
+  	sub_images=#{subImages},
+  	detail=#{detail},
+  	price=#{price},
+  	stock=#{stock},
+  	status=#{status},
+  	update_time=now()
+  	where id=#{id}
+  </update>
+  
+  <insert id="insertProduct" parameterType="team.hymxj.entity.Product">
+  	insert into netShop_product(
+  	 <include refid="noId_Column_List"/>
+  	) 
+  	values(
+  		#{categoryId},
+  		#{name},
+  		#{subTitle},
+  		#{mainImage},
+  		#{subImages},
+  		#{detail},
+  		#{price},
+  		#{stock},
+  		#{status},
+  		now(),
+  		now()
+  	)	
+  </insert>
+  
+</mapper>

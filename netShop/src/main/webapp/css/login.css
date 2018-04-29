@@ -1,0 +1,37 @@
+body{
+	background-image: url(../images/login_background.jpg);
+	background-size:100%;
+}
+#container #l_body {
+	width: 450px;
+	height: 420px;
+	margin: 100px auto 0;
+	border: 2px solid rgba(0,0,0,.14);
+	background:#fff;
+	border-radius:10px;
+}
+#container #l_body #loginlogo {
+	margin: 10px auto 40px;
+	text-align: center;
+	font:30px 'PingFang SC,Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Microsoft Yahei,\\5FAE\8F6F\96C5\9ED1,STHeiti,\\534E\6587\7EC6\9ED1,sans-serif';
+	background:#FAFAFA;
+	border-bottom: 2px solid rgba(0,0,0,.14);	
+}
+#container #l_body #loginlogo #heading {
+	margin: 5px auto;
+	color: rgb(85, 85, 85);
+}
+#container #l_body #loginform {
+	margin: 20px 50px;
+}
+.error {
+	color: red;
+}
+footer{
+    width: 100%;
+    text-align: center;
+    height:40px;   /* footer的高度一定要是固定值*/ 
+    position:absolute;
+    bottom:0px;
+    left:0px;
+}

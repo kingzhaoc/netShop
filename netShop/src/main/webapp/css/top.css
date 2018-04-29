@@ -1,0 +1,114 @@
+#top_container {
+	width: 100%;
+}
+#top_info {
+	line-height: 30px;
+	background-color:red;
+	border-bottom:1px;
+}
+#top_info #second_top_info {
+	width: 1200px;
+	margin: 0 auto;
+	font-size: 16px;
+}
+#top_info #second_top_info #second_top_info_left{
+	float: left;
+}
+#top_info #second_top_info #second_top_info_right{
+	float: right;
+}
+#brand {
+	height: 130px;
+}
+#second_brand {
+	width: 1000px;
+	margin: 0 auto;
+}
+#left_logo {
+	display: inline-block;
+	position: absolute;
+}
+#left_logo_info {
+	margin-left: 100px;
+}
+#left_logo_info img {
+	width: 100px;
+	height: 100px;
+}
+#right_search {
+	display: inline-block;
+	position: absolute;
+	margin-left:200px ;
+}
+
+#searchform {
+	margin: 30px;
+}
+
+#searchform:after {
+	content: "";
+	clear: both;
+	display: table
+}
+
+#searchform form {
+	width: auto;
+	float: right;
+	margin-right: 30px;
+}
+
+
+#searchform input {
+	width: 500px;
+	height: 46px;
+	padding-left: 10px;
+	border: 2px solid red;
+	background: #F9F0DA;
+	outline: none;
+	position: relative;
+	transition: .3s linear;
+	display: inline-block;
+	
+}
+
+#searchform button {
+	width: 100px;
+	height: 50px;
+	background: red;
+	color: white;
+	outline: none;
+	border: none;
+	display: inline-block;
+}
+
+#wordtable {
+	z-index: 99;
+	width: 514px;
+	height: auto;
+	display: none;
+	position:absolute;
+}
+
+.click_work {
+	padding-bottom: 8px;
+	border-top: aquamarine solid 0.5px;
+	color: black;
+	line-height: 24px;
+	font-size: 16px;
+	cursor: pointer;
+	background-color: #F9F0DA;
+	/*鼠标放上变成小手*/
+}
+
+.click_work:hover {
+	background-color:aquamarine;
+}
+
+.error {
+	color: gray;
+	cursor: pointer;
+	/*鼠标放上变成小手*/
+}
+.clear{
+	clear: both;
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+    <!-- 包扫描 -->
+    <context:component-scan base-package="team.hymxj.controller"></context:component-scan>
+	<!-- springmvc注解支持 -->
+	<mvc:annotation-driven>
+	  	  <mvc:message-converters>   
+           <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+      </mvc:message-converters> 
+       
+	</mvc:annotation-driven>
+	<!-- spring视图解析器 -->
+	<bean name="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <property name="prefix" value="/pages/"></property>
+	    <property name="suffix" value=""></property>
+	</bean>
+	
+	
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="defaultEncoding" value="utf-8"></property>
+	    <property name="maxUploadSize" value="1048576"></property>
+	</bean>
+	
+	<!-- jakson -->
+	<bean id="mappingJacksonHttpMessageConverter"
+      class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    <property name="objectMapper">
+        <!-- <bean class="com.threeStepTech.ObjectMapper.CustomObjectMapper"/> -->
+        <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+            <property name="dateFormat">
+                <bean class="java.text.SimpleDateFormat">
+                    <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+                </bean>
+            </property>
+            <property name="serializationInclusion">
+                <!-- 注入枚举类型,过滤对象，这样JSON中不会输出null -->
+                <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+            </property>
+        </bean>
+    </property>
+    <property name="supportedMediaTypes">
+        <list>
+            <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+            <value>text/html;charset=UTF-8</value>
+            <value>application/json;charset=UTF-8</value>
+        </list>
+    </property>
+</bean>
+</beans>
