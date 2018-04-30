@@ -16,26 +16,34 @@
    		id,user_id,product_id,quantity,checked,create_time,update_time
   </sql>
    <sql id="noId_Column_List" >
-   		user_id,product_id,quantity,checked
+   		user_id,product_id,quantity,checked,create_time,update_time
   </sql>
   <insert id="insertCart" parameterType="team.hymxj.entity.Cart">
       insert into netshop_cart(
       	<include refid="noId_Column_List"/>
       )
       values(
-      	#{userID},#{productId},#{quantity},#{checked},now,now
+      	#{userId},#{productId},#{quantity},#{checked},now(),now()
       )
   </insert>
   
-  <select id="getCartByUserAndProduct">
+  <select id="getCartByUserAndProduct" resultMap="BaseResultMap">
       select 
-      <include refid="noId_Column_List"/>
+      <include refid="Base_Column_List"/>
       from 
       netshop_cart
       where user_id=#{userId} and product_id=#{productId}
   </select>
   
-  <select id="getCartsByUserId">
+  <select id="getCartById" resultMap="BaseResultMap">
+       select 
+      <include refid="Base_Column_List"/>
+      from 
+      netshop_cart
+      where id=#{id}
+  </select>
+  
+  <select id="getCartsByUserId" resultMap="BaseResultMap">
       select 
       <include refid="Base_Column_List"/>
       from netshop_cart
@@ -44,7 +52,8 @@
 	
   <update id="updateQuantityById" >
       update netshop_cart set
-      quantity=#{quantity}
+      quantity=#{quantity},
+      update_time=now()
       where id=#{id}
   </update>
   
@@ -52,4 +61,20 @@
       delete from netshop_cart 
       where id=#{_parameter}
   </delete>
+  
+  <delete id="deleteCartByUserId">
+      delete from netshop_cart 
+      where user_id=#{_parameter} and checked=1
+  </delete>
+  
+  <update id="updateCheck">
+      update netshop_cart
+      set checked=#{check}
+      where id=#{id}
+  </update>
+  <update id="updateAllCheckByUserId">
+      update netshop_cart
+      set checked=#{check}
+      where user_id=#{userId}
+  </update>
 </mapper>

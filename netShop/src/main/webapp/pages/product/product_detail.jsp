@@ -56,9 +56,9 @@
 			<div id="detail_right">
 				<div id="detail_right_container">
 				
-					<%-- <div id="pro_id">
+					<div id="pro_id" style="display:none">
 						pro_id:${detailData.product.id}
-					</div> --%>
+					</div>
 					
 					<div id="pro_name">
 						${detailData.product.name}

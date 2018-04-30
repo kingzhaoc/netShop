@@ -14,6 +14,87 @@
 		<link rel="stylesheet" type="text/css" href="css/top.css"/>
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/JsonpAjax.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script>
+		$(document).ready(function(){
+			$(".a_cart").click(function(){
+				$.ajax({
+				 	type: "POST",
+				  	url: "checkLogin.do",
+					dataType : "text",
+					contentType : "application/x-www-form-urlencoded;charset=utf-8", 
+					success : function(data){
+						if(data == ""){
+							location.href="<%=basePath%>lookCart.do";
+						}else{
+							var statu = confirm(data);
+							if(!statu){
+								return false;
+							}else{
+								location.href="<%=basePath%>pages/user/login.jsp";
+							}
+						}
+					}	
+				});
+				return false;
+			});
+			
+			$(".a_info").click(function(){
+				$.ajax({
+				 	type: "POST",
+				  	url: "checkLogin.do",
+					dataType : "text",
+					contentType : "application/x-www-form-urlencoded;charset=utf-8", 
+					success : function(data){
+						if(data == ""){
+							location.href="<%=basePath%>pages/user/userInfo.jsp";
+						}else{
+							var statu = confirm(data);
+							if(!statu){
+								return false;
+							}else{
+								location.href="<%=basePath%>pages/user/login.jsp";
+							}
+						}
+					}	
+				});
+				return false;
+			});
+			
+			$(".a_order").click(function(){
+				$.ajax({
+				 	type: "POST",
+				  	url: "checkLogin.do",
+					dataType : "text",
+					contentType : "application/x-www-form-urlencoded;charset=utf-8", 
+					success : function(data){
+						if(data == ""){
+							location.href="<%=basePath%>pages/order/order.jsp";
+						}else{
+							var statu = confirm(data);
+							if(!statu){
+								return false;
+							}else{
+								location.href="<%=basePath%>pages/user/login.jsp";
+							}
+						}
+					}	
+				});
+				return false;
+			});
+			
+			$(".a_logout").click(function(){
+				var statu = confirm("亲爱的用户，你是否想注销登录！");
+				if(!statu){
+					return false;
+				}else{
+					location.href="<%= basePath%>logout.do";
+				} 
+				return false;
+			});
+			
+		})
+		</script>
 </head>
 <body>
 <div id="top_container">
@@ -27,7 +108,7 @@
 								<a href="<%= basePath%>pages/user/login.jsp">登录</a><a href="<%= basePath%>pages/user/register.jsp"">注册</a>
 							</c:when>
 							<c:otherwise>
-								欢迎，${loginUser.username} <a href="<%= basePath%>logout.do">退出</a>
+								欢迎，${loginUser.username} <a class="a_logout" href="#">退出</a>
 							</c:otherwise>
 						</c:choose>
 				
@@ -35,9 +116,9 @@
 					
 					<!--右边个人-->
 					<div id="second_top_info_right">
-						<a href="">购物车(1)</a>
-						<a href="">我的订单</a>
-						<a href="">我的信息</a>
+						<a class="a_cart" href="#">购物车</a>
+						<a class="a_order" href="#">我的订单</a>
+						<a class="a_info" href="#">我的信息</a>
 					</div>
 					
 					<div class="clear"></div>
@@ -50,7 +131,7 @@
 					<!--左边商标-->
 					<div id="left_logo">
 						<div id="left_logo_info">
-							<img src="images/logo.png"/>
+							<a href=""><img src="images/logo.png"/></a>
 						</div>
 					</div>
 						
@@ -58,7 +139,7 @@
 					<div id="right_search">
 						<div id="searchform">
 							<form class="search" action="searchProducts.do" method="post">
-					  			<input type="text" id="textinput" name="keyword" placeholder="搜索从这里开始...">
+					  			<input type="text" id="textinput" name="keyword" required="required" placeholder="搜索从这里开始...">
 					  			<button type="submit"><b><h3>Serch</h3></b></button>
 					  			<div id="wordtable" ></div>
 							</form>

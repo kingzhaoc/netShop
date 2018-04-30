@@ -104,6 +104,9 @@ body {
 	position: relative;
 	margin: 20px 10px;
 }
+#detail_right_container #pro_id{
+	display:none;
+}
 #detail_right_container #pro_name {
 	font-size: 30px;
 }

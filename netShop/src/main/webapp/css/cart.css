@@ -1,0 +1,160 @@
+#container {
+	width: 1220px;
+	margin: auto;
+}
+.s-commodity{
+	border:1px solid rgba(0,0,0,.14);
+	background:#fff;
+	border-radius:10px;
+	overflow:hidden;
+	margin-bottom:32px;
+}
+.s-commodity h5{
+	height:40px;
+	font-size:25px;
+	font-weight:500;
+	text-indent:2em;
+	line-height:40px;
+	border-bottom:1px solid rgba(0,0,0,.14);
+}
+.s-commodity #nopro{
+	width: 100%;
+	background: url(../images/noproduct.png);
+	height: 520px;
+}
+.s-commodity #nopro #nopro_info{
+	position: relative;
+  	left: 530px;
+  	top: 390px;
+}
+.s-commodity #nopro #nopro_info #buybtn{
+	margin: 10px auto;
+	background: rgba(252,252,252,.4);
+	color: #6c8cd4;
+	width: 150px;
+	height: 40px;
+	border-radius: 10px;
+	1px solid rgba(0,0,0,.14);
+	outline: none;
+}
+.s-commodity #nopro #nopro_info #buybtn:hover {
+	background: rgb(242,242,242);
+}
+.s-commodity #procart table{
+	width: 100%;
+}
+
+.s-commodity #procart table th{
+	text-align: center;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.s-commodity #procart table td{
+	margin: 5px auto;
+	text-align: center;
+	vertical-align: middle;
+}
+.s-commodity #procart table td .num_btn {
+	font-size: 20px;
+	width: 25px;
+	height: 25px;
+	outline: none;
+	border-radius: 25%;
+	line-height: 20px;
+}
+.s-commodity #procart table td .pro_price_info{
+	text-align: center;
+	width: 110px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: 600;
+	border: none;
+	background: inherit;
+}
+.s-commodity #procart table td .pro_num_detail {
+	text-align: center;
+	width: 80px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: 600;
+	border: none;
+	background: inherit;
+}
+.pro_choose{
+	width: 10%;
+}
+.pro_info{
+	width: 40%;
+}
+.pro_img {
+	margin-left: 30px;
+	float: left;
+	width: 100px; height: 100px;
+}
+.pro_name {
+	float: left;
+	padding-top: 20px;
+	padding-left: 20px;
+	font-size: 16px;
+}
+.pro_title{
+	padding-top: 10px;
+	float: left;
+	font-size: 13px;
+}
+
+.pro_unitprice{
+	width: 12.5%;
+}
+.pro_num{
+	width: 15%;
+}
+.pro_price{
+	width: 12.5%;
+}
+.pro_opre{
+	width: 10%;
+}
+.pro_opre .a_delete{
+	font-size:18px;
+	cursor:pointer;
+	text-decoration:none;
+}
+.pro_opre .a_delete:hover{
+	color:red;
+}
+.cart_bottom{
+	height: 50px;
+	line-height: 50px;
+	
+}
+#checkall{
+	margin-left: 50px;
+}
+#bottom_placeorder{
+	font-weight: 500;
+	width: 130px;
+	height: 50px;
+	color: white;
+	font-size: 20px;
+	display: inline-block;
+	cursor: pointer;
+	float: right;
+	margin-bottom: 15px;
+	margin-right: 20px;
+}
+#bottom_totalprice{
+	float: right;
+	margin-right:40px;
+}
+#totalprice{
+	text-align: center;
+	width: 120px;
+	height: 28px;
+	font-size: 18px;
+	color: red;
+	border: none;
+	outline:none;
+	padding-right: 10px;
+}

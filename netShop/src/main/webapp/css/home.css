@@ -173,6 +173,9 @@ body {
 	margin-left: 8px;
 	border-radius: 50%;
 }
+.pro_id_forcart{
+	display:none;
+}
 
 #container .s-body .s-commodity .s-c-list>li>ul>li:hover {
 	border-color: #ccc;

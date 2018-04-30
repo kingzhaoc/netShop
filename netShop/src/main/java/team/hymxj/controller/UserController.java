@@ -77,7 +77,6 @@ public class UserController {
 	@RequestMapping(value="modifyInfomation.do",produces="text/html;charset=UTF-8;")
 	@ResponseBody
 	public String modifyInfomation(User user){
-		System.out.println(user);
 		Boolean isOk=userService.modifyInfomation(user);
 		if(isOk){
 			return "";
@@ -149,4 +148,16 @@ public class UserController {
 		session.removeAttribute("loginUser");
 		return "index.jsp";
 	}
+	
+	@RequestMapping(value="checkLogin.do",produces="text/html;charset=UTF-8;")
+	@ResponseBody
+	public String checkLogin(HttpSession session){
+		User user=(User) session.getAttribute("loginUser");
+		if (user==null) {
+			return "用户未登录,请前往登录!";
+		}else{
+			return ""; 
+		}
+	}
+	
 }

@@ -46,8 +46,10 @@ public class ProductController {
 	public String showMore(HttpServletRequest request,Integer categoryId) {
 		PageData categoryPageData=productService.findProductsByWordsOrCategory(categoryId,"",-5);
 		request.setAttribute("pageData",categoryPageData);
+		if(categoryPageData!=null){
 		String categoryName=categoryPageData.getName();
 		request.setAttribute("name",categoryName);
+		}
 		return "product/product_list.jsp";
 	}
 	
@@ -55,8 +57,10 @@ public class ProductController {
 	public String changePageWithCategory(HttpServletRequest request,Integer categoryId,Integer newPage) {
 		PageData categoryPageData=productService.findProductsByWordsOrCategory(categoryId,"",newPage);
 		request.setAttribute("pageData",categoryPageData);
+		if(categoryPageData!=null){
 		String categoryName=categoryPageData.getName();
 		request.setAttribute("name",categoryName);
+		}
 		return "product/product_list.jsp";
 	}
 	

@@ -19,6 +19,40 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/floor.js"></script>
 		<script type="text/javascript" src="js/autoplay.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $(".a_addToCart").click(function(){
+			    	var id = $(this).parent().next().text();
+			    	$.ajax({
+					 	type: "POST",
+					  	url: "<%=basePath%>addCart.do",
+						data : {productId : id,quantity:1},
+						dataType : "text",
+						contentType : "application/x-www-form-urlencoded;charset=utf-8", 
+						success : function(data){
+								if(data == "") {
+									var statu = confirm("添加成功，是否前往购物车");
+									if(!statu){
+										return false;
+									}else{
+										location.href="<%=basePath%>lookCart.do";
+									}
+								}
+								if(data =="错误，请先登录"){
+									var statu = confirm(data);
+									if(!statu){
+										return false;
+									}else{
+										location.href="<%=basePath%>pages/user/login.jsp";
+									}
+								}	
+						}
+					});
+			    });
+			});
+		</script>
+		
 </head>
 <body>
 <base href="<%=basePath %>">
@@ -45,16 +79,16 @@
 				<div class='s-block'>
 					<ul class='s-b-list clearfix'>
 						<li>
-							<a href=""><img src="images/4-main-1/1.jpg" alt="" /></a>
+							<a href="#"><img src="images/4-main-1/1.jpg" alt="" /></a>
 						</li>
 						<li>
-							<a href=""><img src="images/4-main-1/2.jpg" alt="" /></a>
+							<a href="#"><img src="images/4-main-1/2.jpg" alt="" /></a>
 						</li>
 						<li>
-							<a href=""><img src="images/4-main-1/3.jpg" alt="" /></a>
+							<a href="#"><img src="images/4-main-1/3.jpg" alt="" /></a>
 						</li>
 						<li class='s-b-ls-1'>
-							<a href=""><img src="images/4-main-1/4.png" alt="" /></a>
+							<a href="#"><img src="images/4-main-1/4.png" alt="" /></a>
 						</li>
 					</ul>
 
@@ -69,7 +103,7 @@
 						<ul class='s-c-list clearfix'>
 							<c:forEach var="hotpro" items="${homePageData[0].products}" varStatus="proindex">
 							<c:choose> 
-								<c:when test="${proindex.index == 3 }">   
+								<c:when test="${proindex.index == 3 }">
 								<li class='s-c-ls-4'>
 								<a><img src="<%=basePath %>upload/${hotpro.mainImage}" alt="" /></a>
 								<div>
@@ -82,8 +116,9 @@
 								<div>
 									<span>￥${hotpro.price}</span>
 									<a href="<%=basePath %>productDetail.do?productId=${hotpro.id}" class='s-c-list-btn1'>查看详情</a>
-									<a href="" class='s-c-list-btn2'>加入购物车</a>
+									<a href="#" class='s-c-list-btn2 a_addToCart'>加入购物车</a>
 								</div>
+								<div class="pro_id_forcart" style="display:none">${hotpro.id}</div>
 							</li>
 							  </c:when>
 							  <c:otherwise>
@@ -99,8 +134,9 @@
 								<div>
 									<span>￥${hotpro.price}</span>
 									<a href="<%=basePath %>productDetail.do?productId=${hotpro.id}" class='s-c-list-btn1'>查看详情</a>
-									<a href="" class='s-c-list-btn2'>加入购物车</a>
+									<a href="#" class='s-c-list-btn2 a_addToCart'>加入购物车</a>
 								</div>
+								<div class="pro_id_forcart" style="display:none">${hotpro.id}</div>
 							</li>
 							  </c:otherwise> 
 							  
@@ -140,8 +176,9 @@
 												<div>
 													<span>￥${product.price}</span>
 													<a href="<%=basePath %>productDetail.do?productId=${product.id}" class='s-c-list-btn1'>查看详情</a>
-													<a href="" class='s-c-list-btn2'>加入购物车</a>
+													<a href="" class='s-c-list-btn2 a_addToCart'>加入购物车</a>
 												</div>
+												<div class="pro_id_forcart" style="display:none">${product.id}</div>
 											</li>
 										</c:when>
 										
@@ -158,8 +195,9 @@
 												<div>
 													<span>￥${product.price}</span>
 													<a href="<%=basePath %>productDetail.do?productId=${product.id}" class='s-c-list-btn1'>查看详情</a>
-													<a href="" class='s-c-list-btn2'>加入购物车</a>
+													<a href="#" class='s-c-list-btn2 a_addToCart'>加入购物车</a>
 												</div>
+												<div class="pro_id_forcart" style="display:none">${product.id}</div>
 											</li>
 										</c:when>
 										
@@ -176,8 +214,9 @@
 												<div>
 													<span>￥${product.price}</span>
 													<a href="<%=basePath %>productDetail.do?productId=${product.id}" class='s-c-list-btn1'>查看详情</a>
-													<a href="" class='s-c-list-btn2'>加入购物车</a>
+													<a href="#" class='s-c-list-btn2 a_addToCart'>加入购物车</a>
 												</div>
+												<div class="pro_id_forcart" style="display:none">${product.id}</div>
 											</li>
 										</c:otherwise>
 									</c:choose>
